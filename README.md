@@ -218,7 +218,3 @@ curl "http://localhost:3000/api/reports/date-range?startDate=2024-01-01&endDate=
 2. Use GitFlow branching strategy
 3. Ensure tests pass and coverage ≥ 30%
 4. Update documentation as needed
-
-## 📝 License
-
-This project is licensed under the MIT License.
