@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=
+      - MONGODB_URI=
+      - JWT_SECRET=
+      - JWT_EXPIRES_IN=
+      - CONTENTFUL_SPACE_ID=
+      - CONTENTFUL_ACCESS_TOKEN=
+      - CONTENTFUL_ENVIRONMENT=
+      - CONTENTFUL_CONTENT_TYPE=
+      - CONTENTFUL_API_URL=
+      - SYNC_INTERVAL_CRON=0 * * * *
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=digital_arch_db
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
